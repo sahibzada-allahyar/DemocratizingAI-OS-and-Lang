@@ -1,0 +1,67 @@
+# EditorConfig is awesome: https://EditorConfig.org
+
+# Top-most EditorConfig file
+root = true
+
+# Unix-style newlines with a newline ending every file
+[*]
+end_of_line = lf
+insert_final_newline = true
+charset = utf-8
+trim_trailing_whitespace = true
+
+# Rust files
+[*.rs]
+indent_style = space
+indent_size = 4
+max_line_length = 100
+
+# Assembly files
+[*.{s,S}]
+indent_style = space
+indent_size = 4
+
+# TOML files
+[*.toml]
+indent_style = space
+indent_size = 4
+
+# JSON files
+[*.json]
+indent_style = space
+indent_size = 4
+
+# YAML files
+[*.{yml,yaml}]
+indent_style = space
+indent_size = 2
+
+# Shell scripts
+[*.sh]
+indent_style = space
+indent_size = 2
+shell_variant = bash
+binary_next_line = true
+switch_case_indent = true
+space_redirects = true
+
+# Markdown files
+[*.md]
+indent_style = space
+indent_size = 2
+trim_trailing_whitespace = false
+
+# Documentation
+[*.{txt,doc,pdf}]
+indent_style = space
+indent_size = 4
+max_line_length = 80
+
+# Makefiles require tabs
+[Makefile]
+indent_style = tab
+
+# Git files
+[.git*]
+indent_style = tab
+indent_size = 4

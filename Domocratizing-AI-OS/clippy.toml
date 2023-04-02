@@ -1,0 +1,72 @@
+# Cognitive complexity threshold
+cognitive-complexity-threshold = 25
+
+# Type complexity threshold
+type-complexity-threshold = 250
+
+# Too many arguments threshold
+too-many-arguments-threshold = 7
+
+# Too many lines threshold
+too-many-lines-threshold = 100
+
+# Doc valid idents
+doc-valid-idents = [
+    "ARM",
+    "AArch64",
+    "AI",
+    "CPU",
+    "DMA",
+    "EL1",
+    "EL2",
+    "FIQ",
+    "FP",
+    "GPU",
+    "ID",
+    "IO",
+    "IPC",
+    "IRQ",
+    "KB",
+    "MB",
+    "MMU",
+    "NPU",
+    "OS",
+    "PCI",
+    "RAM",
+    "SIMD",
+    "SMP",
+    "SoC",
+    "SVE",
+    "TB",
+    "TLB",
+    "USB",
+]
+
+# Allow some common cases
+allow-unwrap-in-tests = true
+allow-expect-in-tests = true
+allow-panic-in-tests = true
+allow-print-in-tests = true
+
+# Disallow some dangerous patterns
+disallowed-methods = [
+    "std::env::set_var",
+    "std::env::remove_var",
+    "std::process::exit",
+    "std::process::abort",
+]
+
+disallowed-types = ["std::sync::Mutex", "std::sync::RwLock", "std::sync::mpsc"]
+
+# Modules can import their parent's private items
+module-name-imports = "allow"
+
+# Warn on large trait objects
+warn-on-large-enum-variant-size = 200
+
+# Miscellaneous
+enum-variant-name-threshold = 3
+single-char-binding-names-threshold = 4
+too-many-instance-attributes = 10
+vec-box-size-threshold = 0
+max-struct-bools = 3

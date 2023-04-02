@@ -1,0 +1,139 @@
+# Rust build artifacts
+/target/
+**/*.rs.bk
+Cargo.lock
+
+# Generated files
+*.o
+*.a
+*.so
+*.dylib
+*.dll
+*.exe
+*.bin
+*.elf
+*.img
+*.iso
+*.kernel
+
+# Debug files
+*.pdb
+*.dSYM/
+*.su
+*.idb
+*.map
+
+# IDE and editor files
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Build directories
+/build/
+/dist/
+/out/
+
+# Documentation
+/doc/
+/docs/_build/
+/docs/_static/
+/docs/_templates/
+
+# Test artifacts
+/tests/tmp/
+/tests/fixtures/
+/tests/*.log
+
+# Dependencies
+/vendor/
+/.cargo/registry/
+/.cargo/git/
+/.rustup/
+
+# Environment files
+.env
+.env.*
+*.env
+
+# Logs and databases
+*.log
+*.sqlite
+*.db
+
+# Backup files
+*.bak
+*.backup
+*~
+*.old
+
+# OS-specific files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Project-specific files
+/boot/
+/initrd/
+/sysroot/
+/toolchain/
+/cross/
+/images/
+/qemu/
+/vm/
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# Core dumps
+core
+core.*
+*.core
+
+# Patch files
+*.patch
+*.diff
+*.orig
+*.rej
+
+# Coverage reports
+*.gcno
+*.gcda
+*.lcov
+coverage/
+coverage.json
+coverage.xml
+
+# Profiling data
+*.prof
+callgrind.out.*
+perf.data
+perf.data.old
+
+# Fuzzing artifacts
+**/fuzz/corpus/
+**/fuzz/artifacts/
+**/fuzz-*.log
+
+# Miscellaneous
+*.swp
+.DS_Store
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local

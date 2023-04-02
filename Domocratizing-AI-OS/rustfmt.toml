@@ -1,0 +1,29 @@
+# Basic formatting
+max_width = 100
+tab_spaces = 4
+hard_tabs = false
+newline_style = "Unix"
+
+# Imports
+reorder_imports = true
+reorder_modules = true
+group_imports = "StdExternalCrate"
+
+# Comments and documentation
+wrap_comments = true
+format_code_in_doc_comments = true
+
+# Function formatting
+fn_args_layout = "Tall"
+where_single_line = false
+
+# Control flow
+control_brace_style = "AlwaysSameLine"
+match_arm_blocks = true
+
+# Struct and enum formatting
+struct_lit_single_line = false
+
+# Error handling
+error_on_line_overflow = false
+error_on_unformatted = false
