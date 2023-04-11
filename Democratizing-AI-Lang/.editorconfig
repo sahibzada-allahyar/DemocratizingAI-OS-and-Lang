@@ -1,0 +1,85 @@
+# EditorConfig is awesome: https://EditorConfig.org
+
+# Top-most EditorConfig file
+root = true
+
+# Unix-style newlines with a newline ending every file
+[*]
+end_of_line = lf
+insert_final_newline = true
+charset = utf-8
+trim_trailing_whitespace = true
+
+# Rust files
+[*.rs]
+indent_style = space
+indent_size = 4
+max_line_length = 100
+
+# CUDA files
+[*.{cu,cuh}]
+indent_style = space
+indent_size = 4
+max_line_length = 100
+
+# TOML files
+[*.toml]
+indent_style = space
+indent_size = 4
+
+# Markdown files
+[*.md]
+indent_style = space
+indent_size = 2
+trim_trailing_whitespace = false
+
+# YAML files
+[*.{yml,yaml}]
+indent_style = space
+indent_size = 2
+
+# JSON files
+[*.json]
+indent_style = space
+indent_size = 4
+
+# Shell scripts
+[*.sh]
+indent_style = space
+indent_size = 2
+end_of_line = lf
+
+# Windows scripts
+[*.{cmd,bat,ps1}]
+end_of_line = crlf
+indent_style = space
+indent_size = 2
+
+# Documentation
+[docs/**/*.md]
+indent_style = space
+indent_size = 2
+trim_trailing_whitespace = false
+
+# Git files
+[.git*]
+indent_style = tab
+indent_size = 4
+
+# CI/CD files
+[.github/workflows/*.{yml,yaml}]
+indent_style = space
+indent_size = 2
+
+# Makefiles
+[Makefile]
+indent_style = tab
+
+# Ignore binary files
+[*.{png,jpg,jpeg,gif,ico,webp,woff,woff2,ttf,eot,otf}]
+charset = unset
+end_of_line = unset
+insert_final_newline = unset
+trim_trailing_whitespace = unset
+indent_style = unset
+indent_size = unset

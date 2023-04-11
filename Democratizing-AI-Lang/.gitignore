@@ -1,0 +1,159 @@
+# Rust build artifacts
+/target/
+**/*.rs.bk
+Cargo.lock
+
+# CUDA build artifacts
+*.ptx
+*.cubin
+*.fatbin
+
+# IDE and editor files
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Build output directories
+/build/
+/dist/
+/out/
+/output/
+
+# Generated documentation
+/doc/
+/docs/_build/
+/target/doc/
+
+# Test artifacts
+/tests/tmp/
+/tests/data/
+*.test
+*.tmp
+
+# Benchmark artifacts
+/benches/tmp/
+/benches/data/
+*.bench
+
+# Debug artifacts
+*.pdb
+*.dSYM/
+*.su
+*.idb
+*.opendb
+
+# Dependencies
+/.cargo/
+/vendor/
+/.crates.toml
+/.crates2.json
+
+# Environment files
+.env
+.env.*
+*.env.local
+
+# Log files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+debug.log
+
+# System files
+.directory
+.Trash-*
+$RECYCLE.BIN/
+System Volume Information
+ehthumbs.db
+Thumbs.db
+
+# Backup files
+*.bak
+*.backup
+*.old
+*.orig
+*.rej
+
+# Python virtual environments (for documentation)
+venv/
+.venv/
+ENV/
+.env/
+.python-version
+
+# Node.js (for documentation)
+node_modules/
+package-lock.json
+yarn.lock
+
+# Binary files
+*.bin
+*.exe
+*.dll
+*.so
+*.dylib
+*.lib
+*.a
+
+# CUDA specific
+*.i
+*.ii
+*.gpu
+*.ptx
+*.cubin
+*.fatbin
+*.module_map
+
+# Generated files
+*.generated.*
+*_generated.rs
+bindings.rs
+cuda_bindings.rs
+
+# Coverage reports
+coverage/
+*.gcno
+*.gcda
+*.gcov
+*.lcov
+*.info
+
+# Profiling data
+*.prof
+*.profile
+callgrind.out.*
+perf.data
+perf.data.old
+
+# Packaging artifacts
+*.deb
+*.rpm
+*.tar.gz
+*.zip
+*.7z
+*.rar
+
+# Documentation artifacts
+book/
+_book/
+*.pdf
+*.epub
+*.mobi
+
+# Temporary files
+*.swx
+*.tmp
+*.temp
+*~.nib
+*.swn
+*.swo
+*.swp
+.*.sw[a-z]
