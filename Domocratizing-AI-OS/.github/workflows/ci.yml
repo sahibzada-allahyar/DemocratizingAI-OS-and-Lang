@@ -1,0 +1,162 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  CARGO_TERM_COLOR: always
+  RUST_BACKTRACE: 1
+  RUSTFLAGS: "-D warnings"
+
+jobs:
+  check:
+    name: Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@nightly
+        with:
+          targets: aarch64-unknown-none
+          components: rustfmt, clippy
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y qemu-system-aarch64 gcc-aarch64-linux-gnu binutils-aarch64-linux-gnu
+      - name: Check formatting
+        run: cargo fmt --all -- --check
+      - name: Run clippy
+        run: cargo clippy --target aarch64-unknown-none -- -D warnings
+      - name: Run check
+        run: cargo check --target aarch64-unknown-none
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@nightly
+        with:
+          targets: aarch64-unknown-none
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y qemu-system-aarch64 gcc-aarch64-linux-gnu binutils-aarch64-linux-gnu
+      - name: Build debug
+        run: cargo build --target aarch64-unknown-none
+      - name: Build release
+        run: cargo build --target aarch64-unknown-none --release
+      - name: Upload debug artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: kernel-debug
+          path: target/aarch64-unknown-none/debug/kernel
+      - name: Upload release artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: kernel-release
+          path: target/aarch64-unknown-none/release/kernel
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@nightly
+        with:
+          targets: aarch64-unknown-none
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y qemu-system-aarch64 gcc-aarch64-linux-gnu binutils-aarch64-linux-gnu
+      - name: Run tests
+        run: cargo test --target aarch64-unknown-none
+
+  docs:
+    name: Documentation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@nightly
+        with:
+          targets: aarch64-unknown-none
+      - name: Build documentation
+        run: cargo doc --no-deps --target aarch64-unknown-none
+      - name: Upload documentation
+        uses: actions/upload-artifact@v4
+        with:
+          name: docs
+          path: target/aarch64-unknown-none/doc
+
+  qemu:
+    name: QEMU Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@nightly
+        with:
+          targets: aarch64-unknown-none
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y qemu-system-aarch64 gcc-aarch64-linux-gnu binutils-aarch64-linux-gnu
+      - name: Build kernel
+        run: cargo build --target aarch64-unknown-none
+      - name: Run in QEMU
+        run: |
+          timeout 30s qemu-system-aarch64 \
+            -machine virt \
+            -cpu cortex-a72 \
+            -smp 4 \
+            -m 4G \
+            -nographic \
+            -kernel target/aarch64-unknown-none/debug/kernel \
+            || test $? -eq 124
+
+  security:
+    name: Security Audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@nightly
+      - name: Install cargo-audit
+        run: cargo install cargo-audit
+      - name: Run security audit
+        run: cargo audit
+
+  coverage:
+    name: Code Coverage
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@nightly
+        with:
+          targets: aarch64-unknown-none
+          components: llvm-tools-preview
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y qemu-system-aarch64 gcc-aarch64-linux-gnu binutils-aarch64-linux-gnu
+          cargo install grcov
+      - name: Run tests with coverage
+        env:
+          RUSTFLAGS: "-Zinstrument-coverage"
+          LLVM_PROFILE_FILE: "coverage-%p-%m.profraw"
+        run: cargo test --target aarch64-unknown-none
+      - name: Generate coverage report
+        run: |
+          grcov . \
+            --binary-path ./target/aarch64-unknown-none/debug/ \
+            -s . \
+            -t lcov \
+            --branch \
+            --ignore-not-existing \
+            --ignore "/*" \
+            -o lcov.info
+      - name: Upload coverage report
+        uses: codecov/codecov-action@v4
+        with:
+          file: lcov.info
+          fail_ci_if_error: true
