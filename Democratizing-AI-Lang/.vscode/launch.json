@@ -1,0 +1,128 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug Compiler",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=democratising",
+                    "--package=democratising-compiler"
+                ]
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}/compiler"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug Tensor Operations Example",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--example=tensor_ops",
+                    "--package=democratising-examples"
+                ]
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}/examples"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug Neural Network Example",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--example=neural_network",
+                    "--package=democratising-examples"
+                ]
+            },
+            "args": [
+                "--model",
+                "mlp"
+            ],
+            "cwd": "${workspaceFolder}/examples"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug CUDA Example",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--example=cuda_acceleration",
+                    "--package=democratising-examples",
+                    "--features=cuda"
+                ]
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}/examples"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug Unit Tests",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--lib",
+                    "--package=democratising-stdlib"
+                ]
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug Integration Tests",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--test=integration_test"
+                ]
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug Benchmarks",
+            "cargo": {
+                "args": [
+                    "bench",
+                    "--no-run"
+                ]
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "cuda-gdb",
+            "request": "launch",
+            "name": "Debug CUDA Kernels",
+            "program": "${workspaceFolder}/target/debug/examples/cuda_acceleration",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "preLaunchTask": "build-cuda-example",
+            "stopAtEntry": true,
+            "cuda-gdb": "/usr/local/cuda/bin/cuda-gdb"
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Debug All Examples",
+            "configurations": [
+                "Debug Tensor Operations Example",
+                "Debug Neural Network Example",
+                "Debug CUDA Example"
+            ]
+        }
+    ]
+}

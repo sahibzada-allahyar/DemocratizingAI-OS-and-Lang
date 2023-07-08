@@ -1,0 +1,89 @@
+# Cognitive complexity threshold
+cognitive-complexity-threshold = 25
+
+# Type complexity threshold
+type-complexity-threshold = 250
+
+# Too many arguments threshold
+too-many-arguments-threshold = 10
+
+# Too many lines threshold
+too-many-lines-threshold = 150
+
+# Doc valid idents
+doc-valid-idents = [
+    "AI",
+    "GPU",
+    "CUDA",
+    "LLVM",
+    "MLP",
+    "CNN",
+    "LSTM",
+    "ReLU",
+    "API",
+]
+
+# Allow large arrays
+array-size-threshold = 50
+
+# Allow large enum variants
+enum-variant-size-threshold = 200
+
+# Allow large const arrays
+const-size-threshold = 100
+
+# Allow large functions
+function-size-threshold = 100
+
+# Allow large types
+type-size-threshold = 200
+
+# Allow large structs
+struct-size-threshold = 200
+
+# Allow large impls
+impl-size-threshold = 200
+
+# Allow large matches
+match-size-threshold = 50
+
+# Allow large blocks
+block-size-threshold = 100
+
+# Allow large expressions
+expr-size-threshold = 100
+
+# Allow large literals
+literal-size-threshold = 100
+
+# Allow large parameters
+param-size-threshold = 100
+
+# Allow large returns
+return-size-threshold = 100
+
+# Allow large traits
+trait-size-threshold = 200
+
+# Allow large tuples
+tuple-size-threshold = 20
+
+# Allow large unions
+union-size-threshold = 200
+
+# Allow large variables
+var-size-threshold = 100
+
+# Disallow
+disallowed-names = []
+disallowed-macros = []
+disallowed-methods = []
+disallowed-types = []
+
+# Enforce
+must-use-candidate = true
+must-use-unit = true
+must-use-generics = true
+
+# Numeric bounds
+upper-case-acronyms = true
