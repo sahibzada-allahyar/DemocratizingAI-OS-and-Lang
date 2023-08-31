@@ -1,0 +1,150 @@
+[package]
+name = "kernel"
+version = "0.1.0"
+authors = ["Sahibzada Allahyar"]
+edition = "2021"
+description = "Kernel for Democratizing AI OS"
+repository = "https://github.com/sahibzadaallahyar/Democratizing-AI-OS"
+license = "MIT OR Apache-2.0"
+build = "build.rs"
+
+[lib]
+name = "kernel"
+path = "src/lib.rs"
+
+[[bin]]
+name = "kernel"
+path = "src/main.rs"
+
+[dependencies]
+# Core dependencies
+log = { version = "0.4.20", default-features = false }
+bitflags = "2.4.2"
+spin = "0.9.8"
+hashbrown = { version = "0.14.3", default-features = false }
+lazy_static = { version = "1.4.0", features = ["spin_no_std"] }
+
+# Numeric and data handling
+num-traits = { version = "0.2.17", default-features = false }
+num-derive = { version = "0.4.2", default-features = false }
+byteorder = { version = "1.5.0", default-features = false }
+static_assertions = "1.1.0"
+volatile = "0.5.1"
+paste = "1.0.14"
+cfg-if = "1.0.0"
+zerocopy = { version = "0.7.32", default-features = false }
+
+# Embedded support
+embedded-hal = "1.0.0"
+embedded-io = "0.6.1"
+embedded-dma = "0.2.0"
+embedded-alloc = "0.5.0"
+
+# Cryptography and security
+rand = { version = "0.8.5", default-features = false }
+rand_chacha = { version = "0.3.1", default-features = false }
+rand_core = { version = "0.6.4", default-features = false }
+sha2 = { version = "0.10.8", default-features = false }
+aes = { version = "0.8.3", default-features = false }
+chacha20 = { version = "0.9.1", default-features = false }
+poly1305 = { version = "0.8.0", default-features = false }
+x25519-dalek = { version = "2.0.0", default-features = false }
+ed25519-dalek = { version = "2.1.0", default-features = false }
+blake2 = { version = "0.10.6", default-features = false }
+blake3 = { version = "1.5.0", default-features = false }
+
+# Serialization and data formats
+serde = { version = "1.0.195", default-features = false }
+uuid = { version = "1.6.1", default-features = false }
+time = { version = "0.3.31", default-features = false }
+
+# Data structures and algorithms
+bitvec = { version = "1.0.1", default-features = false }
+smallvec = { version = "1.11.2", default-features = false }
+arrayvec = { version = "0.7.4", default-features = false }
+heapless = "0.8.0"
+tinyvec = { version = "1.6.0", default-features = false }
+either = { version = "1.9.0", default-features = false }
+itertools = { version = "0.12.0", default-features = false }
+
+# Code generation and macros
+derive_more = "0.99.17"
+memoffset = "0.9.0"
+bytemuck = { version = "1.14.0", default-features = false }
+
+# Memory and bytes handling
+bytes = { version = "1.5.0", default-features = false }
+memchr = { version = "2.7.1", default-features = false }
+once_cell = { version = "1.19.0", default-features = false }
+scopeguard = { version = "1.2.0", default-features = false }
+static_init = "1.0.3"
+
+# ARM and hardware support
+tock-registers = "0.8.1"
+cortex-a = "8.1.1"
+aarch64-cpu = "9.4.0"
+arm-gic = "0.1.0"
+arm-pl011 = "0.1.0"
+arm-pl031 = "0.1.0"
+arm-pl061 = "0.1.0"
+arm-pl330 = "0.1.0"
+arm-pl390 = "0.1.0"
+arm-pmu = "0.1.0"
+arm-smmu = "0.1.0"
+arm-timer = "0.1.0"
+arm-uart = "0.1.0"
+arm-watchdog = "0.1.0"
+
+[build-dependencies]
+chrono = "0.4.31"
+
+[features]
+default = []
+debug = []
+release = []
+test = []
+bench = []
+
+[profile.dev]
+opt-level = 1
+debug = true
+debug-assertions = true
+overflow-checks = true
+lto = false
+panic = "unwind"
+incremental = true
+codegen-units = 256
+rpath = false
+
+[profile.release]
+opt-level = 3
+debug = false
+debug-assertions = false
+overflow-checks = false
+lto = true
+panic = "abort"
+incremental = false
+codegen-units = 1
+rpath = false
+
+[profile.test]
+opt-level = 0
+debug = true
+debug-assertions = true
+overflow-checks = true
+lto = false
+panic = "unwind"
+incremental = true
+codegen-units = 256
+rpath = false
+
+[profile.bench]
+opt-level = 3
+debug = false
+debug-assertions = false
+overflow-checks = false
+lto = true
+panic = "abort"
+incremental = false
+codegen-units = 1
+rpath = false
