@@ -1,0 +1,76 @@
+[package]
+name = "democratising-compiler"
+version.workspace = true
+authors.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+documentation.workspace = true
+homepage.workspace = true
+description = "Compiler for the Democratising programming language"
+keywords = ["compiler", "llvm", "language", "ai", "cuda"]
+categories = ["compilers", "development-tools"]
+
+[dependencies]
+# Core dependencies
+anyhow.workspace = true
+thiserror.workspace = true
+log.workspace = true
+env_logger.workspace = true
+clap = { workspace = true, features = ["derive"] }
+serde = { workspace = true, features = ["derive"] }
+serde_json.workspace = true
+tokio = { workspace = true, features = ["full"] }
+
+# LLVM integration
+llvm-sys.workspace = true
+inkwell = { workspace = true }
+target-lexicon.workspace = true
+
+# Parser and lexer
+logos = "0.13"
+chumsky = "1.0"
+ariadne = "0.3"
+
+# IR and optimization
+petgraph = "0.6"
+indexmap = "2.1"
+itertools = "0.12"
+smallvec = "1.11"
+
+# Code generation
+cranelift.workspace = true
+cranelift-module.workspace = true
+cranelift-jit.workspace = true
+
+# Development utilities
+pretty_assertions = { workspace = true, optional = true }
+test-log = { workspace = true, optional = true }
+proptest = { workspace = true, optional = true }
+
+[dev-dependencies]
+pretty_assertions.workspace = true
+test-log.workspace = true
+proptest.workspace = true
+criterion.workspace = true
+tempfile.workspace = true
+
+[features]
+default = ["llvm-backend"]
+llvm-backend = []
+cranelift-backend = []
+cuda = []
+testing-utils = ["pretty_assertions", "test-log", "proptest"]
+
+[[bin]]
+name = "democratising"
+path = "src/main.rs"
+
+[lib]
+name = "democratising_compiler"
+path = "src/lib.rs"
+
+[[bench]]
+name = "compiler_benchmarks"
+harness = false
