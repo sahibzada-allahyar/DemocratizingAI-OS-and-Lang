@@ -1,0 +1,62 @@
+[package]
+name = "democratising-examples"
+version.workspace = true
+authors.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+documentation.workspace = true
+homepage.workspace = true
+description = "Example programs for the Democratising programming language"
+publish = false
+
+[dependencies]
+# Core dependencies
+anyhow.workspace = true
+log.workspace = true
+env_logger.workspace = true
+clap = { workspace = true, features = ["derive"] }
+
+# Project dependencies
+democratising-compiler = { path = "../compiler" }
+democratising-stdlib = { path = "../stdlib", features = ["cuda"] }
+
+# Visualization and progress
+plotters = { workspace = true }
+indicatif = { workspace = true }
+
+# Development utilities
+pretty_assertions = { workspace = true }
+test-log = { workspace = true }
+
+[[example]]
+name = "tensor_ops"
+path = "tensor_ops.rs"
+
+[[example]]
+name = "neural_network"
+path = "neural_network.rs"
+
+[[example]]
+name = "distributed_training"
+path = "distributed_training.rs"
+
+[[example]]
+name = "cuda_acceleration"
+path = "cuda_acceleration.rs"
+
+[[example]]
+name = "mnist"
+path = "mnist.rs"
+
+[features]
+default = ["cuda"]
+cuda = ["democratising-stdlib/cuda"]
+cpu = ["democratising-stdlib/cpu"]
+distributed = ["democratising-stdlib/distributed"]
+
+# Example-specific features
+mnist-data = []
+visualization = []
+benchmarking = []
