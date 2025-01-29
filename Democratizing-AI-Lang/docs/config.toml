@@ -1,0 +1,78 @@
+[book]
+title = "Democratising Documentation"
+authors = ["Sahibzada Allahyar"]
+description = "Documentation for the Democratising programming language"
+language = "en"
+multilingual = false
+src = "src"
+
+[output.html]
+default-theme = "light"
+preferred-dark-theme = "navy"
+git-repository-url = "https://github.com/democratising/democratising"
+git-repository-icon = "fa-github"
+edit-url-template = "https://github.com/democratising/democratising/edit/main/docs/{path}"
+additional-css = ["theme/custom.css"]
+additional-js = ["theme/custom.js"]
+mathjax-support = true
+copy-fonts = true
+no-section-label = false
+site-url = "/democratising/"
+cname = "docs.democratising.ai"
+
+[output.html.playground]
+editable = true
+line-numbers = true
+runnable = true
+
+[output.html.search]
+enable = true
+limit-results = 30
+teaser-word-count = 30
+use-boolean-and = true
+boost-title = 2
+boost-hierarchy = 1
+boost-paragraph = 1
+expand = true
+heading-split-level = 3
+
+[output.html.fold]
+enable = true
+level = 1
+
+[preprocessor.index]
+
+[preprocessor.links]
+
+[preprocessor.toc]
+command = "mdbook-toc"
+renderer = ["html"]
+
+[rust]
+edition = "2021"
+
+[build]
+build-dir = "book"
+create-missing = true
+use-default-preprocessors = true
+
+# Custom variables for our documentation
+[custom]
+google_analytics = ""
+algolia_search = ""
+version = "0.1.0"
+min_rust_version = "1.75.0"
+min_llvm_version = "16.0"
+
+# Navigation sidebar configuration
+[output.html.sidebar]
+default-expanded = true
+enable = true
+home-title = "Home"
+title-separator = "|"
+
+# Chapter configuration
+[output.html.chapter]
+enable = true
+insert-title = true
+prefix-chapters = true
